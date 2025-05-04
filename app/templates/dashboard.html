@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+
+<h2 class="mb-4">Welcome, {{ current_user.username }}</h2>
+
+<!-- Add Expense Form FIRST -->
+<div class="card mb-4">
+    <div class="card-header">Add Expense</div>
+    <div class="card-body">
+        <form method="POST">
+            {{ expense_form.hidden_tag() }}
+            <div class="mb-3">
+                {{ expense_form.date.label(class="form-label") }}
+                {{ expense_form.date(class="form-control") }}
+            </div>
+            <div class="mb-3">
+                {{ expense_form.description.label(class="form-label") }}
+                {{ expense_form.description(class="form-control") }}
+            </div>
+            <div class="mb-3">
+                {{ expense_form.amount.label(class="form-label") }}
+                {{ expense_form.amount(class="form-control") }}
+            </div>
+            <div class="mb-3">
+                {{ expense_form.category.label(class="form-label") }}
+                {{ expense_form.category(class="form-select") }}
+            </div>
+            {{ expense_form.submit(class="btn btn-primary") }}
+        </form>
+    </div>
+</div>
+
+<!-- Add Category Form SECOND -->
+<div class="card mb-4">
+    <div class="card-header">Add Category</div>
+    <div class="card-body">
+        <form method="POST">
+            {{ category_form.hidden_tag() }}
+            <div class="mb-3">
+                {{ category_form.name.label(class="form-label") }}
+                {{ category_form.name(class="form-control") }}
+            </div>
+            {{ category_form.submit(class="btn btn-success") }}
+        </form>
+    </div>
+</div>
+
+<!-- Expense Table -->
+<h3 class="mt-5">Your Expenses</h3>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Category</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for exp in expenses %}
+        <tr>
+            <td>{{ exp.date }}</td>
+            <td>{{ exp.description }}</td>
+            <td>₹{{ '%.2f' % exp.amount }}</td>
+            <td>{{ exp.category.name }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Bar Chart -->
+<hr class="my-5">
+<h3>Expense Breakdown by Category</h3>
+<canvas id="expenseBarChart" width="400" height="400"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('expenseBarChart').getContext('2d');
+    const expenseBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{ labels|tojson }},
+            datasets: [{
+                label: 'Total Spent (in ₹)',
+                data: {{ values|tojson }},
+                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                }
+            }
+        }
+    });
+</script>
+
+{% endblock %}

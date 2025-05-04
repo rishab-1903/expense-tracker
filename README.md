@@ -50,7 +50,7 @@ A simple web app to track your personal expenses — add, categorize, and visual
     python run.py
     ```
 
-Then open [http://localhost:5000](http://localhost:5000) in your browser 🎉
+Then open [http://localhost:5000/login](http://localhost:5000/login) in your browser 🎉
 
 ---
 

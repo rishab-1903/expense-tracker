@@ -1,16 +1,16 @@
-# 💸 Personal Expense Tracker (Flask App)
+# Personal Expense Tracker (Flask App)
 
-A simple web app to track your personal expenses — add, categorize, and visualize your spending using a clean dashboard.
+A simple web app to track your personal expenses — add, categorize, and visualize your spending using dashboard.
 
 ---
 
-## 🚀 Features
+##  Features
 
-- 🔐 User Registration & Login  
-- ➕ Add and manage your **expenses**  
-- 📂 Create custom **expense categories**  
-- 📊 Visual summary with an interactive **bar chart**  
-- 📱 Clean, responsive UI (Bootstrap-based)
+-  User Registration & Login  
+-  Add and manage your **expenses**  
+-  Create custom **expense categories**  
+-  Visual summary with an interactive **bar chart**  
+-  Clean, responsive UI (Bootstrap-based)
 
 ---
 
@@ -22,7 +22,7 @@ A simple web app to track your personal expenses — add, categorize, and visual
 - **Forms & Auth:** Flask-WTF, Flask-Login
 
 
-## 🧪 How to Run Locally
+##  How to Run Locally
 
 1. **Clone the repository:**
 
@@ -54,6 +54,6 @@ Then open [http://localhost:5000](http://localhost:5000) in your browser 🎉
 
 ---
 
-## ✍️ Author
+##  Author
 
-Made with ❤️ by Rishab Gupta – feel free to fork or contribute!
+Rishab Gupta

@@ -1,6 +1,6 @@
 # 💸 Personal Expense Tracker (Flask App)
 
-A simple web app to track your personal expenses — add, categorize, and visualize your daily spending using a clean dashboard.
+A simple web app to track your personal expenses — add, categorize, and visualize your spending using a clean dashboard.
 
 ---
 

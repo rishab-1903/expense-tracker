@@ -19,10 +19,22 @@ def dashboard():
 
     # Handle category form
     if category_form.validate_on_submit() and category_form.submit.data:
-        new_category = Category(name=category_form.name.data, user_id=current_user.id)
-        db.session.add(new_category)
-        db.session.commit()
-        flash("Category added!", "success")
+        new_name = category_form.name.data.strip().lower()
+    
+        # Check if this category name lready existr
+        existing_category = Category.query.filter(
+            Category.user_id == current_user.id,
+            db.func.lower(Category.name) == new_name
+        ).first()
+    
+        if existing_category:
+            flash("Category already exist.", "danger")
+        else:
+            new_category = Category(name=category_form.name.data.strip(), user_id=current_user.id)
+            db.session.add(new_category)
+            db.session.commit()
+            flash("Category added!", "success")
+    
         return redirect(url_for('dashboard.dashboard'))
 
     # Handle expense form
